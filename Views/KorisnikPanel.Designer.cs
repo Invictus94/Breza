@@ -34,6 +34,8 @@
             button1 = new Button();
             textBoxPrezime = new TextBox();
             panel1 = new Panel();
+            label4 = new Label();
+            label3 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,14 +84,34 @@
             // panel1
             // 
             panel1.Controls.Add(textBoxPrezime);
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(button1);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBoxIme);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(505, 335);
             panel1.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(40, 133);
+            label4.Name = "label4";
+            label4.Size = new Size(78, 25);
+            label4.TabIndex = 3;
+            label4.Text = "Prezime:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(40, 85);
+            label3.Name = "label3";
+            label3.Size = new Size(46, 25);
+            label3.TabIndex = 1;
+            label3.Text = "Ime:";
             // 
             // KorisnikPanel
             // 
@@ -111,5 +133,7 @@
         private Button button1;
         private TextBox textBoxPrezime;
         private Panel panel1;
+        private Label label4;
+        private Label label3;
     }
 }

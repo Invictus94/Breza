@@ -10,30 +10,39 @@ using System.Windows.Forms;
 
 namespace Breza.Views
 {
-    public partial class KorisnikPanel : UserControl
+    public partial class DjelatnikPanel : UserControl
     {
         IDatabase database;
-        Korisnik korisnik = new Korisnik();
-        public KorisnikPanel()
+        Djelatnik djelatnik = new Djelatnik();
+        public DjelatnikPanel()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
 
+            comboBoxOvlasti.DataSource = Enum.GetValues<UserRole>();
+
             textBoxIme.DataBindings.Add(
-                "Text",
-                korisnik,
-                nameof(Korisnik.Ime),
-                true,
-                DataSourceUpdateMode.OnPropertyChanged);
+    "Text",
+    djelatnik,
+    nameof(Djelatnik.Ime),
+    true,
+    DataSourceUpdateMode.OnPropertyChanged);
 
             textBoxPrezime.DataBindings.Add(
                 "Text",
-                korisnik,
-                nameof(Korisnik.Prezime),
+                djelatnik,
+                nameof(Djelatnik.Prezime),
                 true,
                 DataSourceUpdateMode.OnPropertyChanged);
-        }
 
+            comboBoxOvlasti.DataBindings.Add(
+    "SelectedItem",
+    djelatnik,
+    nameof(Djelatnik.Ovlasti),
+    true,
+    DataSourceUpdateMode.OnPropertyChanged);
+
+        }
         private void CenterPanel()
         {
             panel1.Left = (this.Width - panel1.Width) / 2;
@@ -46,23 +55,23 @@ namespace Breza.Views
             CenterPanel();
         }
 
-private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
-                $"Dodati korisnika:\n\n{korisnik.Ime} {korisnik.Prezime}?",
+                $"Dodati djelatnika:\n\n{djelatnik.Ime} {djelatnik.Prezime} kao {djelatnik.Ovlasti}?",
                 "Potvrda",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                var ok = database.DodajKorisnika(
-                    korisnik);
+                var ok = database.DodajDjelatnika(
+                    djelatnik);
 
                 if (ok)
                 {
                     MessageBox.Show(
-                        $"Korisnik {textBoxIme.Text} {textBoxPrezime.Text} je uspješno dodan.",
+                        $"Djelatnik {textBoxIme.Text} {textBoxPrezime.Text} je uspješno dodan.",
                         "Uspješno",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -70,13 +79,12 @@ private void button1_Click(object sender, EventArgs e)
                 else
                 {
                     MessageBox.Show(
-                        $"Korisnik {textBoxIme.Text} {textBoxPrezime.Text} nije dodan.",
+                        $"Djelatnik {textBoxIme.Text} {textBoxPrezime.Text} nije dodan.",
                         "Greška",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
             }
         }
-
     }
 }

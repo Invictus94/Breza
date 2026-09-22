@@ -19,8 +19,8 @@ namespace Breza
                     ShowPage(new KorisnikPanel());
                     break;
 
-                case "Odgajatelj":
-                   // ShowPage(new DrugaStranica());
+                case "Djelatnik":
+                    ShowPage(new DjelatnikPanel());
                     break;
             }
         }

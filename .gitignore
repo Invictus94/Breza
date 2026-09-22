@@ -77,3 +77,4 @@ obj/Debug/net10.0-windows/Breza.csproj.FileListAbsolute.txt
 obj/Debug/net10.0-windows/Breza.csproj.GenerateResource.cache
 obj/Debug/net10.0-windows/Breza.AssemblyInfo.cs
 Views/KorisnikPanel.resx
+/obj

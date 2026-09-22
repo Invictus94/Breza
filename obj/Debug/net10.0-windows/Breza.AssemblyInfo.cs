@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Breza")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15f4e0060509a83a128b0e8cd21a3c192bfa4195")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0b9b9dbed88201e00d0f8b999344b1e17015e13")]
 [assembly: System.Reflection.AssemblyProductAttribute("Breza")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Breza")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

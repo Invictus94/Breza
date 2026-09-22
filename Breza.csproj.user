@@ -7,6 +7,9 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\DjelatnikPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Views\KorisnikPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

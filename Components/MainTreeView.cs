@@ -25,7 +25,7 @@ namespace Breza.Components
 
             var dodajNode = new TreeNode("Dodaj");
             dodajNode.Nodes.Add("Korisnik");
-            dodajNode.Nodes.Add("Odgajatelj");
+            dodajNode.Nodes.Add("Djelatnik");
 
             izvjesceNode.Expand();
 
