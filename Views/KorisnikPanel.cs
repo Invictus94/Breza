@@ -12,7 +12,7 @@ namespace Breza.Views
 {
     public partial class KorisnikPanel : UserControl
     {
-        IDatabase database;
+        IDatabase database = Core.Database;
         Korisnik korisnik = new Korisnik();
         public KorisnikPanel()
         {
@@ -66,6 +66,8 @@ private async void button1_Click(object sender, EventArgs e)
                         "Uspješno",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+
+                    korisnik.Id = Core.GetNewID;
                 }
                 else
                 {

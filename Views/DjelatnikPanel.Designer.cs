@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label2 = new Label();
             textBoxPrezime = new TextBox();
             label1 = new Label();
             comboBoxOvlasti = new ComboBox();
@@ -36,11 +37,14 @@
             button1 = new Button();
             label3 = new Label();
             textBoxIme = new TextBox();
+            textBoxLozinka = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(textBoxLozinka);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(textBoxPrezime);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(comboBoxOvlasti);
@@ -53,6 +57,15 @@
             panel1.Size = new Size(711, 462);
             panel1.TabIndex = 0;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(163, 220);
+            label2.Name = "label2";
+            label2.Size = new Size(75, 25);
+            label2.TabIndex = 13;
+            label2.Text = "Lozinka:";
+            // 
             // textBoxPrezime
             // 
             textBoxPrezime.Location = new Point(247, 172);
@@ -63,7 +76,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(163, 229);
+            label1.Location = new Point(163, 265);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.Yes;
             label1.Size = new Size(123, 25);
@@ -73,7 +86,7 @@
             // comboBoxOvlasti
             // 
             comboBoxOvlasti.FormattingEnabled = true;
-            comboBoxOvlasti.Location = new Point(292, 226);
+            comboBoxOvlasti.Location = new Point(292, 262);
             comboBoxOvlasti.Name = "comboBoxOvlasti";
             comboBoxOvlasti.Size = new Size(256, 33);
             comboBoxOvlasti.TabIndex = 10;
@@ -89,7 +102,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(436, 302);
+            button1.Location = new Point(436, 338);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 9;
@@ -113,6 +126,13 @@
             textBoxIme.Size = new Size(313, 31);
             textBoxIme.TabIndex = 5;
             // 
+            // textBoxLozinka
+            // 
+            textBoxLozinka.Location = new Point(247, 217);
+            textBoxLozinka.Name = "textBoxLozinka";
+            textBoxLozinka.Size = new Size(301, 31);
+            textBoxLozinka.TabIndex = 14;
+            // 
             // DjelatnikPanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -135,5 +155,7 @@
         private Label label3;
         private TextBox textBoxIme;
         private TextBox textBoxPrezime;
+        private Label label2;
+        private TextBox textBoxLozinka;
     }
 }

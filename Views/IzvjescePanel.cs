@@ -12,11 +12,11 @@ namespace Breza.Views
 {
     public partial class IzvjescePanel : UserControl
     {
-        IDatabase database;
+        IDatabase database = Core.Database;
         private int currentStep = 0;
         Korisnik[] korisnici;
         private readonly List<UserControl> steps = new List<UserControl>();
-        IzvjesceDnevno dnevno = new IzvjesceDnevno();
+        IzvjesceDnevno dnevno = null;
 
         public IzvjescePanel()
         {
@@ -24,26 +24,16 @@ namespace Breza.Views
             Dock = DockStyle.Fill;
             contentPanel.Visible = false;
 
-            dohvatiKorisnike();
             steps.Add(new UserControl());
-
-            foreach (var korisnik in korisnici)
-            {
-                var izvjesceKorisnik = new IzvjesceKorisnik()
-                {
-                    Korisnik = korisnik,
-                };
-
-                dnevno.IzvjesceKorisnika.Add(izvjesceKorisnik);
-                steps.Add(new IzvjesceKorisnikPanel(izvjesceKorisnik, () => Back(), () => buttonDalje_Click(null, null)));
-            }
-
-            dnevno.Datum = DateTime.Now;
-            dnevno.Djelatnik = Core.CurrentUser;
 
             if (!Core.NODB_MODE)
             {
-                dnevno = database.DohvatiIzvjesce(Core.CurrentUser, dnevno.Datum);
+                dnevno = database.DohvatiIzvjesce(Core.CurrentUser, dateTimePicker1.Value.Date);
+            }
+
+            if (dnevno == null)
+            {
+                PostaviDefaultIzvjesce(dateTimePicker1.Value.Date);
             }
 
             textBoxNapomena.DataBindings.Add(
@@ -64,7 +54,17 @@ namespace Breza.Views
             {
                 if (!Core.NODB_MODE && dateTimePicker1.Value.Date != dnevno.Datum.Date)
                 {
-                    dnevno = database.DohvatiIzvjesce(Core.CurrentUser, dnevno.Datum);
+                    var date = dateTimePicker1.Value.Date;
+                    var result = database.DohvatiIzvjesce(Core.CurrentUser, date);
+
+                    if (result != null)
+                    {
+                        dnevno = result;
+                    }
+                    else
+                    {
+                        PostaviDefaultIzvjesce(date);
+                    }
                 }
             };
         }
@@ -83,6 +83,28 @@ namespace Breza.Views
         {
             base.OnResize(e);
             CenterPanel();
+        }
+
+        public void PostaviDefaultIzvjesce(DateTime datum)
+        {
+            dnevno = new IzvjesceDnevno();
+            dnevno.Datum = DateTime.Now.Date;
+            dnevno.DjelatnikId = Core.CurrentUser.Id;
+            dnevno.Id = dnevno.DjelatnikId + dnevno.Datum.ToString("dd_MM_yyyy");
+
+            dohvatiKorisnike();
+
+            foreach (var korisnik in korisnici)
+            {
+                var izvjesceKorisnik = new IzvjesceKorisnik()
+                {
+                    IzvjesceId = dnevno.Id,
+                    KorisnikId = korisnik.Id,
+                    Datum = dnevno.Datum,
+                };
+
+                steps.Add(new IzvjesceKorisnikPanel(izvjesceKorisnik, () => Back(), () => buttonDalje_Click(null, null)));
+            }
         }
 
         private void dohvatiKorisnike()
@@ -155,8 +177,13 @@ namespace Breza.Views
 
             if (result == DialogResult.Yes && !Core.NODB_MODE)
             {
-                var ok = database.dodajIzvjesce(
+                var ok = database.DodajIzvjesce(
                     dnevno);
+
+                foreach (IzvjesceKorisnikPanel item in steps.Skip(1))
+                {
+                    ok &= database.SpremiIzvjesceKorisnika(item.IzvjesceKorisnik);
+                }
 
                 if (ok)
                 {

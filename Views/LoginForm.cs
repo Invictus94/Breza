@@ -1,4 +1,5 @@
 ﻿using Breza.Helpers;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ namespace Breza.Views
 {
     public partial class Prijava : Form
     {
-        private const string CorrectPassword = "1234";
+        IDatabase database = Core.Database;
         public Prijava()
         {
             InitializeComponent();
@@ -21,15 +22,24 @@ namespace Breza.Views
 
         private void buttonPrijava_Click(object sender, EventArgs e)
         {
-            if (textBoxLozinka.Text == CorrectPassword)
+            var ok = Core.NOLOGIN_MODE;
+            var user = new Models.Djelatnik()
             {
-                Core.CurrentUser = new Models.Djelatnik()
-                {
-                    Ime = "Admin",
-                    Prezime = textBoxLozinka.Text,
-                    Ovlasti = Models.UserRole.Admin
-                };
+                Ime = "Admin",
+                Prezime = textBoxLozinka.Text,
+                Ovlasti = Models.UserRole.Admin
+            };
 
+            if (!ok)
+            {
+                var djelatnik = database.Prijava(textBoxKorIme.Text, textBoxLozinka.Text);
+                ok = djelatnik != null;
+                user = djelatnik;
+            }
+
+            if (ok)
+            {
+                Core.CurrentUser = user;
                 Hide();
 
                 using (var mainForm = new Form1())
@@ -49,6 +59,17 @@ namespace Breza.Views
 
                 textBoxLozinka.Clear();
                 textBoxKorIme.Focus();
+            }
+        }
+
+        private void textBoxKorIme_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+
+                buttonPrijava_Click(null, null);
             }
         }
     }

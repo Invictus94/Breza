@@ -12,7 +12,7 @@ namespace Breza.Views
 {
     public partial class DjelatnikPanel : UserControl
     {
-        IDatabase database;
+        IDatabase database = Core.Database;
         Djelatnik djelatnik = new Djelatnik();
         public DjelatnikPanel()
         {
@@ -34,6 +34,13 @@ namespace Breza.Views
                 nameof(Djelatnik.Prezime),
                 true,
                 DataSourceUpdateMode.OnPropertyChanged);
+
+            textBoxLozinka.DataBindings.Add(
+    "Text",
+    djelatnik,
+    nameof(Djelatnik.Lozinka),
+    true,
+    DataSourceUpdateMode.OnPropertyChanged);
 
             comboBoxOvlasti.DataBindings.Add(
     "SelectedItem",
@@ -75,6 +82,8 @@ namespace Breza.Views
                         "Uspješno",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+
+                    djelatnik.Id = Core.GetNewID;
                 }
                 else
                 {

@@ -30,40 +30,67 @@
         {
             mainTreeView1 = new Breza.Components.MainTreeView();
             tableLayoutPanel1 = new TableLayoutPanel();
+            labelSat = new Label();
             mainPanel = new Panel();
+            labelIme = new Label();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // mainTreeView1
             // 
             mainTreeView1.Dock = DockStyle.Fill;
-            mainTreeView1.Location = new Point(3, 3);
+            mainTreeView1.Location = new Point(3, 73);
             mainTreeView1.Name = "mainTreeView1";
-            mainTreeView1.Size = new Size(388, 1072);
+            mainTreeView1.Size = new Size(388, 1002);
             mainTreeView1.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.5714283F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 76.42857F));
-            tableLayoutPanel1.Controls.Add(mainTreeView1, 0, 0);
-            tableLayoutPanel1.Controls.Add(mainPanel, 1, 0);
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(labelIme, 0, 0);
+            tableLayoutPanel1.Controls.Add(labelSat, 1, 0);
+            tableLayoutPanel1.Controls.Add(mainTreeView1, 0, 1);
+            tableLayoutPanel1.Controls.Add(mainPanel, 1, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100.000008F));
             tableLayoutPanel1.Size = new Size(1673, 1078);
             tableLayoutPanel1.TabIndex = 1;
+            // 
+            // labelSat
+            // 
+            labelSat.Anchor = AnchorStyles.Right;
+            labelSat.AutoSize = true;
+            labelSat.Font = new Font("Segoe UI", 26F);
+            labelSat.Location = new Point(1555, 0);
+            labelSat.Name = "labelSat";
+            labelSat.Size = new Size(115, 70);
+            labelSat.TabIndex = 2;
+            labelSat.Text = "SAT";
             // 
             // mainPanel
             // 
             mainPanel.Dock = DockStyle.Fill;
-            mainPanel.Location = new Point(397, 3);
+            mainPanel.Location = new Point(397, 73);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(1273, 1072);
+            mainPanel.Size = new Size(1273, 1002);
             mainPanel.TabIndex = 1;
+            // 
+            // labelIme
+            // 
+            labelIme.Anchor = AnchorStyles.Left;
+            labelIme.AutoSize = true;
+            labelIme.Font = new Font("Segoe UI", 24F);
+            labelIme.Location = new Point(3, 2);
+            labelIme.Name = "labelIme";
+            labelIme.Size = new Size(108, 65);
+            labelIme.TabIndex = 1;
+            labelIme.Text = "IME";
             // 
             // Form1
             // 
@@ -75,6 +102,7 @@
             Text = "Početna";
             WindowState = FormWindowState.Maximized;
             tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -83,5 +111,7 @@
         private Components.MainTreeView mainTreeView1;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel mainPanel;
+        private Label labelSat;
+        private Label labelIme;
     }
 }

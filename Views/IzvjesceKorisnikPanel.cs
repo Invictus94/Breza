@@ -1,4 +1,5 @@
-﻿using Breza.Models;
+﻿using Breza.Helpers;
+using Breza.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,19 +12,23 @@ namespace Breza.Views
 {
     public partial class IzvjesceKorisnikPanel : UserControl
     {
+        IDatabase database = Core.Database;
         private bool postavljamOcjenu = false;
-        IzvjesceKorisnik izvjesceKorisnik { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public IzvjesceKorisnik IzvjesceKorisnik { get; set; }
         Action BackButton;
         Action NextButton;
         public IzvjesceKorisnikPanel(IzvjesceKorisnik _korisnik, Action _back, Action _next)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-            this.izvjesceKorisnik = _korisnik;
+            this.IzvjesceKorisnik = _korisnik;
             this.BackButton = _back;
             this.NextButton = _next;
 
-            labelImeKorisnik.Text = $"{izvjesceKorisnik.Korisnik.Ime} {izvjesceKorisnik.Korisnik.Prezime}";
+            var korisnik = database.DohvatiKorisnika(IzvjesceKorisnik.KorisnikId);
+
+            labelImeKorisnik.Text = $"{korisnik?.Ime} {korisnik?.Prezime}";
 
             var statusi = Enum.GetValues<KorisnikStatus>()
                 .Select(x => new
@@ -39,8 +44,8 @@ namespace Breza.Views
 
             textBoxNapomena.DataBindings.Add(
                 "Text",
-                izvjesceKorisnik,
-                nameof(IzvjesceKorisnik.Napomena),
+                IzvjesceKorisnik,
+                nameof(Models.IzvjesceKorisnik.Napomena),
                 true,
                 DataSourceUpdateMode.OnPropertyChanged);
 
@@ -53,13 +58,13 @@ namespace Breza.Views
 
             comboBoxStatus.DataBindings.Add(
                 "SelectedValue",
-                izvjesceKorisnik,
-                nameof(IzvjesceKorisnik.KorisnikStatus),
+                IzvjesceKorisnik,
+                nameof(Models.IzvjesceKorisnik.Status),
                 true,
                 DataSourceUpdateMode.OnPropertyChanged);
 
             upisiOcjenu();
-            postaviOcjenu(izvjesceKorisnik.KorisnikOcjena);
+            postaviOcjenu(IzvjesceKorisnik.Ocjena);
         }
         private void CenterPanel()
         {
@@ -82,7 +87,7 @@ namespace Breza.Views
             try
             {
                 // Spremi u model
-                izvjesceKorisnik.KorisnikOcjena = ocjena;
+                IzvjesceKorisnik.Ocjena = ocjena;
 
                 // Postavi checkboxe
                 checkBox1.Checked = ocjena == KorisnikOcjena.Lose;

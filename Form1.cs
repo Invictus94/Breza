@@ -1,16 +1,35 @@
+using Breza.Helpers;
 using Breza.Views;
 
 namespace Breza
 {
     public partial class Form1 : Form
     {
+        private readonly System.Windows.Forms.Timer satTimer = new();
         public Form1()
         {
             InitializeComponent();
 
             mainTreeView1.NodeSelected += MainTreeView1_NodeSelected;
+
+            labelIme.Text = Core.CurrentUser.Ime;
+            PokreniSat();
         }
 
+        private void PokreniSat()
+        {
+            satTimer.Interval = 1000;
+
+            satTimer.Tick += (s, e) =>
+            {
+                labelSat.Text = DateTime.Now.ToString("dd.MM.yyyy. HH:mm:ss");
+            };
+
+            satTimer.Start();
+
+            // odmah postavi vrijeme, bez čekanja prve sekunde
+            labelSat.Text = DateTime.Now.ToString("dd.MM.yyyy. HH:mm:ss");
+        }
         private void MainTreeView1_NodeSelected(object? sender, string nodeName)
         {
             switch (nodeName)

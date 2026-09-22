@@ -60,9 +60,9 @@
             textBoxLozinka.Location = new Point(267, 299);
             textBoxLozinka.Name = "textBoxLozinka";
             textBoxLozinka.Size = new Size(299, 31);
-            textBoxLozinka.TabIndex = 2;
-            textBoxLozinka.Text = "1234";
+            textBoxLozinka.TabIndex = 4;
             textBoxLozinka.UseSystemPasswordChar = true;
+            textBoxLozinka.KeyDown += textBoxKorIme_KeyDown;
             // 
             // textBoxKorIme
             // 
@@ -70,13 +70,14 @@
             textBoxKorIme.Name = "textBoxKorIme";
             textBoxKorIme.Size = new Size(299, 31);
             textBoxKorIme.TabIndex = 3;
+            textBoxKorIme.KeyDown += textBoxKorIme_KeyDown;
             // 
             // buttonPrijava
             // 
             buttonPrijava.Location = new Point(344, 382);
             buttonPrijava.Name = "buttonPrijava";
             buttonPrijava.Size = new Size(112, 34);
-            buttonPrijava.TabIndex = 4;
+            buttonPrijava.TabIndex = 5;
             buttonPrijava.Text = "Prijava";
             buttonPrijava.UseVisualStyleBackColor = true;
             buttonPrijava.Click += buttonPrijava_Click;
