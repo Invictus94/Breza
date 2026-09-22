@@ -14,7 +14,7 @@ namespace Breza.Helpers
             false;
 #endif
 
-        public static bool TESTING_MODE = true;
+        public static bool NODB_MODE = true;
 
         public static Djelatnik CurrentUser;
     }

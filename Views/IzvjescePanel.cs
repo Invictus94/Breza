@@ -41,6 +41,11 @@ namespace Breza.Views
             dnevno.Datum = DateTime.Now;
             dnevno.Djelatnik = Core.CurrentUser;
 
+            if (!Core.NODB_MODE)
+            {
+                dnevno = database.DohvatiIzvjesce(Core.CurrentUser, dnevno.Datum);
+            }
+
             textBoxNapomena.DataBindings.Add(
             "Text",
             dnevno,
@@ -54,6 +59,14 @@ namespace Breza.Views
                 nameof(IzvjesceDnevno.Datum),
                 true,
                 DataSourceUpdateMode.OnPropertyChanged);
+
+            dateTimePicker1.ValueChanged += (s, e) =>
+            {
+                if (!Core.NODB_MODE && dateTimePicker1.Value.Date != dnevno.Datum.Date)
+                {
+                    dnevno = database.DohvatiIzvjesce(Core.CurrentUser, dnevno.Datum);
+                }
+            };
         }
         private void CenterPanel()
         {
@@ -74,7 +87,7 @@ namespace Breza.Views
 
         private void dohvatiKorisnike()
         {
-            if (Core.TESTING_MODE)
+            if (Core.NODB_MODE)
             {
                 korisnici = new Korisnik[]
                 {
@@ -133,11 +146,35 @@ namespace Breza.Views
 
         private void Finish()
         {
-            MessageBox.Show("Izvještaj je spremljen.");
 
+            DialogResult result = MessageBox.Show(
+             $"Spremiti izvještaj {dnevno.Datum:dd.MM.yyyy}?",
+             "Potvrda",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes && !Core.NODB_MODE)
+            {
+                var ok = database.dodajIzvjesce(
+                    dnevno);
 
-            // Ovdje spremi podatke u bazu itd. TODO
+                if (ok)
+                {
+                    MessageBox.Show(
+                        $"Izvještaj {dnevno.Datum:dd.MM.yyyy} je uspješno spremljen.",
+                        "Uspješno",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        $"Izvještaj nije spremljen.",
+                        "Greška",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Breza.Views
             CenterPanel();
         }
 
-private void button1_Click(object sender, EventArgs e)
+private async void button1_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
                 $"Dodati korisnika:\n\n{korisnik.Ime} {korisnik.Prezime}?",

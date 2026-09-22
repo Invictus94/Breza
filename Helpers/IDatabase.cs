@@ -10,5 +10,7 @@ namespace Breza.Helpers
         bool DodajDjelatnika(Djelatnik djelatnik);
         bool DodajKorisnika(Korisnik korisnik);
         Korisnik[] DohvatiKorisnike();
+        IzvjesceDnevno DohvatiIzvjesce(Djelatnik djelatnik, DateTime datum);
+        bool dodajIzvjesce(IzvjesceDnevno izvjesce);
     }
 }
