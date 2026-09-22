@@ -30,6 +30,7 @@
         {
             mainTreeView1 = new Breza.Components.MainTreeView();
             tableLayoutPanel1 = new TableLayoutPanel();
+            mainPanel = new Panel();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -47,6 +48,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.5714283F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 76.42857F));
             tableLayoutPanel1.Controls.Add(mainTreeView1, 0, 0);
+            tableLayoutPanel1.Controls.Add(mainPanel, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -54,6 +56,14 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Size = new Size(1673, 1078);
             tableLayoutPanel1.TabIndex = 1;
+            // 
+            // mainPanel
+            // 
+            mainPanel.Dock = DockStyle.Fill;
+            mainPanel.Location = new Point(397, 3);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Size = new Size(1273, 1072);
+            mainPanel.TabIndex = 1;
             // 
             // Form1
             // 
@@ -72,5 +82,6 @@
 
         private Components.MainTreeView mainTreeView1;
         private TableLayoutPanel tableLayoutPanel1;
+        private Panel mainPanel;
     }
 }

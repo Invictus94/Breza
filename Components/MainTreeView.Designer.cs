@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TreeNode treeNode1 = new TreeNode("Podnesi");
-            TreeNode treeNode2 = new TreeNode("Pretraži");
-            TreeNode treeNode3 = new TreeNode("Pregledaj");
-            TreeNode treeNode4 = new TreeNode("Izvješće", new TreeNode[] { treeNode1, treeNode2, treeNode3 });
             treeView1 = new TreeView();
             SuspendLayout();
             // 
@@ -40,15 +36,6 @@
             treeView1.Font = new Font("Segoe UI", 30F);
             treeView1.Location = new Point(0, 0);
             treeView1.Name = "treeView1";
-            treeNode1.Name = "Node2";
-            treeNode1.Text = "Podnesi";
-            treeNode2.Name = "Node1";
-            treeNode2.Text = "Pretraži";
-            treeNode3.Name = "Node3";
-            treeNode3.Text = "Pregledaj";
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Izvješće";
-            treeView1.Nodes.AddRange(new TreeNode[] { treeNode4 });
             treeView1.Size = new Size(326, 919);
             treeView1.TabIndex = 0;
             // 

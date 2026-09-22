@@ -11,14 +11,35 @@ namespace Breza.Components
 {
     public partial class MainTreeView : UserControl
     {
+        public event EventHandler<string>? NodeSelected;
         public MainTreeView()
         {
             InitializeComponent();
 
             treeView1.Dock = DockStyle.Fill;
-            treeView1.Nodes[0].Expand();
+
+            var izvjesceNode = new TreeNode("Izvješće");
+            izvjesceNode.Nodes.Add("Podnesi");
+            izvjesceNode.Nodes.Add("Pretraži");
+            izvjesceNode.Nodes.Add("Pregledaj");
+
+            var dodajNode = new TreeNode("Dodaj");
+            dodajNode.Nodes.Add("Korisnik");
+            dodajNode.Nodes.Add("Odgajatelj");
+
+            izvjesceNode.Expand();
+
+            treeView1.Nodes.Add(izvjesceNode);
+            treeView1.Nodes.Add(dodajNode);
+
+            treeView1.AfterSelect += (sender, e) => OnAfterSelect(e);
 
             Controls.Add(treeView1);
+        }
+
+        protected void OnAfterSelect(TreeViewEventArgs e)
+        {
+            NodeSelected?.Invoke(this, e.Node.Text);
         }
     }
 }

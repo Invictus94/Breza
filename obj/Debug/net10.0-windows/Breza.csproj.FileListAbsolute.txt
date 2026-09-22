@@ -18,3 +18,5 @@ D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.genruntimeconfig.cach
 D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\ref\Breza.dll
 D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.csproj.Up2Date
 D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Components.MainTreeView.resources
+D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.sourcelink.json
+D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Views.KorisnikPanel.resources
