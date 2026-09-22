@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Breza.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,13 @@ namespace Breza.Views
         {
             if (textBoxLozinka.Text == CorrectPassword)
             {
+                Core.CurrentUser = new Models.Djelatnik()
+                {
+                    Ime = "Admin",
+                    Prezime = textBoxLozinka.Text,
+                    Ovlasti = Models.UserRole.Admin
+                };
+
                 Hide();
 
                 using (var mainForm = new Form1())

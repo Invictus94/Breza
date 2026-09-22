@@ -22,6 +22,11 @@ namespace Breza
                 case "Djelatnik":
                     ShowPage(new DjelatnikPanel());
                     break;
+
+                    //izvjesce
+                case "Podnesi":
+                    ShowPage(new IzvjescePanel());
+                    break;
             }
         }
 

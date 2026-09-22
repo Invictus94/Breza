@@ -21,3 +21,5 @@ D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Components.MainTreeVi
 D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.sourcelink.json
 D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Views.KorisnikPanel.resources
 D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Views.DjelatnikPanel.resources
+D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Views.IzvjescePanel.resources
+D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Views.IzvjesceKorisnikPanel.resources

@@ -9,5 +9,6 @@ namespace Breza.Helpers
     {
         bool DodajDjelatnika(Djelatnik djelatnik);
         bool DodajKorisnika(Korisnik korisnik);
+        Korisnik[] DohvatiKorisnike();
     }
 }
