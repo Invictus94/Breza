@@ -22,8 +22,8 @@ namespace Breza.Helpers
         Izvjesce[]? DohvatiIzvjesce(Korisnik korisnik, DateTime from, DateTime to, IzvjesceStatus? status);
         Izvjesce[]? DohvatiIzvjesce(DateTime from, DateTime to);
         Izvjesce[]? DohvatiIzvjesce(DateTime from, DateTime to, IzvjesceStatus? status);
+        IzvjesceKorisnik[] DohvatiIzvjescaKorisnika(string izvjesceId);
         Korisnik? DohvatiKorisnika(string korisnikId);
-
         Djelatnik? Prijava(string ime, string lozinka);
     }
 }

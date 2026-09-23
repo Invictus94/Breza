@@ -66,6 +66,16 @@ namespace Breza.Models
             get => dnevnaNapomena;
             set => SetProperty(ref dnevnaNapomena, value);
         }
+
+        public void WriteFrom(IzvjesceDnevno izvjesce)
+        {
+            Id = izvjesce.Id;
+            Status = izvjesce.Status;
+            Datum = izvjesce.Datum;
+            KreiranoDatum = izvjesce.KreiranoDatum;
+            DjelatnikId = izvjesce.DjelatnikId;
+            DnevnaNapomena = izvjesce.DnevnaNapomena;
+        }
     }
 
     //public class IzvjesceDnevno : NotifyingObject

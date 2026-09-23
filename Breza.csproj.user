@@ -16,6 +16,9 @@
     <Compile Update="Views\IzvjescePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Views\IzvjescePregled.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Views\KorisnikPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

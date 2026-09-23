@@ -214,6 +214,8 @@ public class FirebaseService : IDatabase
                 Datum = x.Datum,
                 DjelatnikId = x.DjelatnikId,
                 DnevnaNapomena = x.DnevnaNapomena,
+                KreiranoDatum = x.KreiranoDatum,
+                Status = x.Status,
 
                 Korisnici = korisniciPoIzvjescu.TryGetValue(
                     x.Id,
@@ -631,6 +633,40 @@ DateTime to)
                 MessageBox.Show(e.Message);
 
             return Array.Empty<Izvjesce>();
+        }
+    }
+
+    public IzvjesceKorisnik[] DohvatiIzvjescaKorisnika(
+    string izvjesceId)
+    {
+        try
+        {
+            Query korisniciQuery = db
+                .Collection("izvjescaKorisnika")
+                .WhereEqualTo(
+                    nameof(IzvjesceKorisnik.IzvjesceId),
+                    izvjesceId);
+
+            QuerySnapshot korisniciSnapshot = korisniciQuery
+                .GetSnapshotAsync()
+                .GetAwaiter()
+                .GetResult();
+
+            var korisnici = korisniciSnapshot.Documents
+                .Select(x => x.ConvertTo<IzvjesceKorisnik>())
+                .ToArray();
+
+            if (korisnici.Length == 0)
+                return Array.Empty<IzvjesceKorisnik>();
+
+            return korisnici;
+        }
+        catch (Exception e)
+        {
+            if (Core.THROWEXCEPTIONS)
+                MessageBox.Show(e.Message);
+
+            return Array.Empty<IzvjesceKorisnik>();
         }
     }
 }

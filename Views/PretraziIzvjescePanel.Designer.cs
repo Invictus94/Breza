@@ -41,6 +41,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            contentPanel = new Panel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -168,11 +169,19 @@
             label1.TabIndex = 0;
             label1.Text = "Pretraga izvješća";
             // 
+            // contentPanel
+            // 
+            contentPanel.Location = new Point(13, 22);
+            contentPanel.Name = "contentPanel";
+            contentPanel.Size = new Size(300, 150);
+            contentPanel.TabIndex = 1;
+            // 
             // PretraziIzvjescePanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
+            Controls.Add(contentPanel);
             Name = "PretraziIzvjescePanel";
             Size = new Size(1164, 615);
             panel1.ResumeLayout(false);
@@ -195,5 +204,6 @@
         private ComboBox comboBoxStatusIzvj;
         private ComboBox comboBoxKorisnik;
         private ComboBox comboBoxDjelatnik;
+        private Panel contentPanel;
     }
 }

@@ -17,6 +17,7 @@ namespace Breza.Views
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
+            contentPanel.Visible = false;
 
             dohvatiDjelatnike();
             dohvatiKorisnike();
@@ -43,6 +44,11 @@ namespace Breza.Views
         {
             panel1.Left = (this.Width - panel1.Width) / 2;
             panel1.Top = (this.Height - panel1.Height) / 2;
+
+            contentPanel.Left = panel1.Left;
+            contentPanel.Top = panel1.Top;
+            contentPanel.Width = panel1.Width;
+            contentPanel.Height = panel1.Height;
         }
 
         protected override void OnResize(EventArgs e)
@@ -186,7 +192,31 @@ namespace Breza.Views
                     status);
             }
 
-            // rezultat pretrage
+
+            if (izvjesca.Length > 0)
+            {
+                contentPanel.Visible = true;
+                panel1.Visible = false;
+
+                contentPanel.Controls.Clear();
+
+                var back = new Action(() =>
+                {
+                    contentPanel.Controls.Clear();
+                    contentPanel.Visible = false;
+                    panel1.Visible = true;
+                });
+
+                UserControl page = new IzvjescePregled(izvjesca, back);
+
+                page.Dock = DockStyle.Fill;
+
+                contentPanel.Controls.Add(page);
+            }
+            else
+            {
+                MessageBox.Show("Nema izvješća za zadane kriterije pretrage.", "Pretraga izvješća", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

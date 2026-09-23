@@ -47,3 +47,4 @@ D:\Projects\Job\Apps\Breza\bin\Debug\net10.0-windows\System.Management.dll
 D:\Projects\Job\Apps\Breza\bin\Debug\net10.0-windows\runtimes\win\lib\net7.0\System.Management.dll
 D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.csproj.AssemblyReference.cache
 D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Views.PretraziIzvjescePanel.resources
+D:\Projects\Job\Apps\Breza\obj\Debug\net10.0-windows\Breza.Views.IzvjescePregled.resources

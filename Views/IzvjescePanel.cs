@@ -16,7 +16,7 @@ namespace Breza.Views
         private int currentStep = 0;
         Korisnik[] korisnici;
         private readonly List<UserControl> steps = new List<UserControl>();
-        IzvjesceDnevno dnevno = null;
+        IzvjesceDnevno dnevno;
 
         public IzvjescePanel()
         {
@@ -30,10 +30,13 @@ namespace Breza.Views
             {
                 var date = dateTimePicker1.Value.Date;
                 dnevno = database.DohvatiIzvjesce(Core.CurrentUser, date, date.AddDays(1))?.FirstOrDefault() ?? null;
+                var korisnici = database.DohvatiIzvjescaKorisnika(dnevno.Id);
+                upisiKorisnike(korisnici);
             }
 
             if (dnevno == null)
             {
+                dnevno = new IzvjesceDnevno();
                 var date = dateTimePicker1.Value.Date;
                 PostaviDefaultIzvjesce(date);
             }
@@ -57,11 +60,13 @@ namespace Breza.Views
                 if (!Core.NODB_MODE && dateTimePicker1.Value.Date != dnevno.Datum.Date)
                 {
                     var date = dateTimePicker1.Value.Date;
-                    var result = database.DohvatiIzvjesce(Core.CurrentUser, date, date.AddDays(1));
+                    var result = database.DohvatiIzvjesce(Core.CurrentUser, date, date.AddDays(1).AddMinutes(-1));
 
                     if (result != null && result.Length > 0)
                     {
-                        dnevno = result[0];
+                        dnevno.WriteFrom(result[0]);
+                        var korisnici = database.DohvatiIzvjescaKorisnika(dnevno.Id);
+                        upisiKorisnike(korisnici);
                     }
                     else
                     {
@@ -89,14 +94,21 @@ namespace Breza.Views
 
         public void PostaviDefaultIzvjesce(DateTime datum)
         {
-            dnevno = new IzvjesceDnevno();
-            dnevno.Datum = datum;
-            dnevno.DjelatnikId = Core.CurrentUser.Id;
-            dnevno.Id = dnevno.DjelatnikId + dnevno.Datum.ToString("dd_MM_yyyy");
+            var dnevnoNew = new IzvjesceDnevno();
+            dnevnoNew.Datum = datum;
+            dnevnoNew.DjelatnikId = Core.CurrentUser.Id;
+            dnevnoNew.Id = dnevnoNew.DjelatnikId + dnevnoNew.Datum.ToString("dd_MM_yyyy");
+
+            dnevno.WriteFrom(dnevnoNew);
 
             dohvatiKorisnike();
+            upisiKorisnike(korisnici);
+        }
+
+        private void upisiKorisnike(Korisnik[] _korisnici)
+        {
             steps.RemoveRange(1, steps.Count - 1);
-            foreach (var korisnik in korisnici)
+            foreach (var korisnik in _korisnici)
             {
                 var izvjesceKorisnik = new IzvjesceKorisnik()
                 {
@@ -107,6 +119,15 @@ namespace Breza.Views
                 };
 
                 steps.Add(new IzvjesceKorisnikPanel(izvjesceKorisnik, () => Back(), () => buttonDalje_Click(null, null)));
+            }
+        }
+
+        private void upisiKorisnike(IzvjesceKorisnik[] izvjesceKorisnik)
+        {
+            steps.RemoveRange(1, steps.Count - 1);
+            foreach (var korisnik in izvjesceKorisnik)
+            {
+                steps.Add(new IzvjesceKorisnikPanel(korisnik, () => Back(), () => buttonDalje_Click(null, null)));
             }
         }
 
