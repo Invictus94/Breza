@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            textBoxLozinka = new TextBox();
             label2 = new Label();
             textBoxPrezime = new TextBox();
             label1 = new Label();
@@ -37,12 +38,12 @@
             button1 = new Button();
             label3 = new Label();
             textBoxIme = new TextBox();
-            textBoxLozinka = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.AutoSize = true;
             panel1.Controls.Add(textBoxLozinka);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(textBoxPrezime);
@@ -54,57 +55,72 @@
             panel1.Controls.Add(textBoxIme);
             panel1.Location = new Point(123, 76);
             panel1.Name = "panel1";
-            panel1.Size = new Size(711, 462);
+            panel1.Size = new Size(933, 789);
             panel1.TabIndex = 0;
+            // 
+            // textBoxLozinka
+            // 
+            textBoxLozinka.Font = new Font("Segoe UI", 22F);
+            textBoxLozinka.Location = new Point(405, 347);
+            textBoxLozinka.Name = "textBoxLozinka";
+            textBoxLozinka.Size = new Size(450, 66);
+            textBoxLozinka.TabIndex = 14;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(163, 220);
+            label2.Font = new Font("Segoe UI", 22F);
+            label2.Location = new Point(193, 347);
             label2.Name = "label2";
-            label2.Size = new Size(75, 25);
+            label2.Size = new Size(182, 60);
             label2.TabIndex = 13;
             label2.Text = "Lozinka:";
             // 
             // textBoxPrezime
             // 
-            textBoxPrezime.Location = new Point(247, 172);
+            textBoxPrezime.Font = new Font("Segoe UI", 22F);
+            textBoxPrezime.Location = new Point(406, 240);
             textBoxPrezime.Name = "textBoxPrezime";
-            textBoxPrezime.Size = new Size(301, 31);
+            textBoxPrezime.Size = new Size(449, 66);
             textBoxPrezime.TabIndex = 12;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(163, 265);
+            label1.Font = new Font("Segoe UI", 22F);
+            label1.Location = new Point(77, 452);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.Yes;
-            label1.Size = new Size(123, 25);
+            label1.Size = new Size(298, 60);
             label1.TabIndex = 11;
             label1.Text = ":Razina ovlasti";
             // 
             // comboBoxOvlasti
             // 
+            comboBoxOvlasti.Font = new Font("Segoe UI", 22F);
             comboBoxOvlasti.FormattingEnabled = true;
-            comboBoxOvlasti.Location = new Point(292, 262);
+            comboBoxOvlasti.Location = new Point(405, 449);
             comboBoxOvlasti.Name = "comboBoxOvlasti";
-            comboBoxOvlasti.Size = new Size(256, 33);
+            comboBoxOvlasti.Size = new Size(450, 68);
             comboBoxOvlasti.TabIndex = 10;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(163, 175);
+            label4.Font = new Font("Segoe UI", 22F);
+            label4.Location = new Point(185, 243);
             label4.Name = "label4";
-            label4.Size = new Size(78, 25);
+            label4.Size = new Size(190, 60);
             label4.TabIndex = 8;
             label4.Text = "Prezime:";
             // 
             // button1
             // 
-            button1.Location = new Point(436, 338);
+            button1.AutoSize = true;
+            button1.Font = new Font("Segoe UI", 22F);
+            button1.Location = new Point(391, 578);
             button1.Name = "button1";
-            button1.Size = new Size(112, 34);
+            button1.Size = new Size(151, 70);
             button1.TabIndex = 9;
             button1.Text = "Dodaj";
             button1.UseVisualStyleBackColor = true;
@@ -113,25 +129,20 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(163, 127);
+            label3.Font = new Font("Segoe UI", 22F);
+            label3.Location = new Point(267, 144);
             label3.Name = "label3";
-            label3.Size = new Size(46, 25);
+            label3.Size = new Size(108, 60);
             label3.TabIndex = 6;
             label3.Text = "Ime:";
             // 
             // textBoxIme
             // 
-            textBoxIme.Location = new Point(235, 127);
+            textBoxIme.Font = new Font("Segoe UI", 22F);
+            textBoxIme.Location = new Point(405, 141);
             textBoxIme.Name = "textBoxIme";
-            textBoxIme.Size = new Size(313, 31);
+            textBoxIme.Size = new Size(450, 66);
             textBoxIme.TabIndex = 5;
-            // 
-            // textBoxLozinka
-            // 
-            textBoxLozinka.Location = new Point(247, 217);
-            textBoxLozinka.Name = "textBoxLozinka";
-            textBoxLozinka.Size = new Size(301, 31);
-            textBoxLozinka.TabIndex = 14;
             // 
             // DjelatnikPanel
             // 
@@ -143,6 +154,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

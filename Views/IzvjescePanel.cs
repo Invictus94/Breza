@@ -21,12 +21,13 @@ namespace Breza.Views
         public IzvjescePanel()
         {
             InitializeComponent();
+
             Dock = DockStyle.Fill;
             contentPanel.Visible = false;
 
             steps.Add(new UserControl());
 
-            if (!Core.NODB_MODE)
+            if (!Core.NODB_MODE && !Core.NOLOGIN_MODE)
             {
                 var date = dateTimePicker1.Value.Date;
                 dnevno = database.DohvatiIzvjesce(Core.CurrentUser, date, date.AddDays(1))?.FirstOrDefault() ?? null;

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            contentPanel = new Panel();
             labelPreostalo = new Label();
             btnNext = new Button();
             textBoxNapomena = new TextBox();
             label1 = new Label();
             labelVrijeme = new Label();
             dateTimePicker1 = new DateTimePicker();
+            contentPanel = new Panel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,13 +51,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1522, 1125);
             panel1.TabIndex = 0;
-            // 
-            // contentPanel
-            // 
-            contentPanel.Location = new Point(3, 20);
-            contentPanel.Name = "contentPanel";
-            contentPanel.Size = new Size(300, 150);
-            contentPanel.TabIndex = 6;
             // 
             // labelPreostalo
             // 
@@ -110,6 +103,13 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(300, 31);
             dateTimePicker1.TabIndex = 0;
+            // 
+            // contentPanel
+            // 
+            contentPanel.Location = new Point(3, 20);
+            contentPanel.Name = "contentPanel";
+            contentPanel.Size = new Size(300, 150);
+            contentPanel.TabIndex = 6;
             // 
             // IzvjescePanel
             // 
