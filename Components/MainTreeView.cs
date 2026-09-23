@@ -21,7 +21,7 @@ namespace Breza.Components
             var izvjesceNode = new TreeNode("Izvješće");
             izvjesceNode.Nodes.Add("Podnesi");
             izvjesceNode.Nodes.Add("Pretraži");
-            izvjesceNode.Nodes.Add("Pregledaj");
+            izvjesceNode.Nodes.Add("Otvoreno");
 
             var dodajNode = new TreeNode("Dodaj");
             dodajNode.Nodes.Add("Korisnik");

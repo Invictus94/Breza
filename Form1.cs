@@ -46,6 +46,10 @@ namespace Breza
                 case "Podnesi":
                     ShowPage(new IzvjescePanel());
                     break;
+
+                case "Pretraži":
+                    ShowPage(new PretraziIzvjescePanel());
+                    break;
             }
         }
 

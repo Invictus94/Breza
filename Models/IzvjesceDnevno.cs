@@ -12,14 +12,23 @@ namespace Breza.Models
     {
         private string id = Guid.NewGuid().ToString();
         private DateTime datum;
+        private DateTime kreirano;
         private string djelatnikId = "";
         private string dnevnaNapomena = "";
+        private IzvjesceStatus status = IzvjesceStatus.Otvoreno;
 
         [FirestoreProperty]
         public string Id
         {
             get => id;
             set => SetProperty(ref id, value);
+        }
+
+        [FirestoreProperty]
+        public IzvjesceStatus Status
+        {
+            get => status;
+            set => SetProperty(ref status, value);
         }
 
         [FirestoreProperty]
@@ -30,6 +39,17 @@ namespace Breza.Models
                       ref datum,
                       DateTime.SpecifyKind(
                           value.Date,
+                          DateTimeKind.Utc));
+        }
+
+        [FirestoreProperty]
+        public DateTime KreiranoDatum
+        {
+            get => kreirano;
+            set => SetProperty(
+                      ref kreirano,
+                      DateTime.SpecifyKind(
+                          value,
                           DateTimeKind.Utc));
         }
 

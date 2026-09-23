@@ -16,7 +16,8 @@ namespace Breza.Helpers
 #endif
 
         public static bool NODB_MODE = false;
-        public static bool NOLOGIN_MODE = true;
+        public static bool NOLOGIN_MODE = false;
+        public static bool THROWEXCEPTIONS = true;
 
 
 

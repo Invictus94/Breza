@@ -18,6 +18,11 @@ namespace Breza.Views
             InitializeComponent();
 
             AcceptButton = buttonPrijava;
+
+            if (Core.NOLOGIN_MODE)
+            {
+                buttonPrijava_Click(null, null);
+            }
         }
 
         private void buttonPrijava_Click(object sender, EventArgs e)
